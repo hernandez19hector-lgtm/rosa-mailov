@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para mi mailov ❤️</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden; text-align: center;
+  font-family: sans-serif; color: white;
+  background: radial-gradient(circle, #65133e, #14051d);
+}
+main { padding: 20px; }
+h1 { color: #ffb4d2; }
+#rosa {
+  font-size: 110px; cursor: pointer;
+  display: inline-block; user-select: none;
+  animation: latir 1s infinite;
+  filter: drop-shadow(0 0 18px #ff287b);
+}
+@keyframes latir {
+  50% { transform: scale(1.15); }
+}
+#mensaje {
+  opacity: 0; transform: translateY(20px);
+  transition: 1s; pointer-events: none;
+}
+#mensaje.visible {
+  opacity: 1; transform: translateY(0);
+}
+h2 { color: #ff91bd; font-size: 30px; }
+button {
+  padding: 14px 22px; border: 0; border-radius: 25px;
+  color: white; background: #d62268; font-size: 17px;
+}
+.petalo {
+  position: fixed; top: -30px;
+  animation: caer 4s linear forwards;
+  pointer-events: none;
+}
+@keyframes caer {
+  to { transform: translateY(110vh) rotate(500deg); opacity: 0; }
+}
+</style>
+</head>
+<body>
+<main>
+  <h1>🌙 Un detalle para ti 🌙</h1>
+  <p>Toca la rosa para descubrir mi mensaje...</p>
+  <div id="rosa" role="button" tabindex="0">🌹</div>
+  <section id="mensaje">
+    <h2>Me encantas mucho, mailov ❤️</h2>
+    <p>Entre millones de personas,<br>
+    mis ojos vuelven a buscarte a ti. 💗</p>
+    <p>🌹 Eres alguien muy especial para mí 🌹</p>
+  </section>
+  <p><button id="boton">Tócame, mailov 💕</button></p>
+</main>
+<script>
+function revelar() {
+  document.getElementById("mensaje").classList.add("visible");
+  for (let i = 0; i < 35; i++) {
+    setTimeout(() => {
+      let p = document.createElement("div");
+      p.className = "petalo";
+      p.textContent = ["🌸","❤️","💕","🌹"][Math.floor(Math.random()*4)];
+      p.style.left = Math.random()*100 + "vw";
+      p.style.fontSize = 20 + Math.random()*25 + "px";
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 4000);
+    }, i*80);
+  }
+}
+document.getElementById("rosa").addEventListener("click", revelar);
+document.getElementById("boton").addEventListener("click", revelar);
+document.getElementById("rosa").addEventListener("keydown", e => {
+  if (e.key === "Enter" || e.key === " ") revelar();
+});
+</script>
+</body>
+</html>
